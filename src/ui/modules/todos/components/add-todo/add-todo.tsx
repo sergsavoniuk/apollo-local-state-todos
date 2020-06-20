@@ -17,7 +17,7 @@ export const AddTodo: React.FC = () => {
 
   return (
     <form
-      className='d-flex'
+      className='d-flex mb-4'
       onSubmit={(event: React.FormEvent) => {
         event.preventDefault();
 

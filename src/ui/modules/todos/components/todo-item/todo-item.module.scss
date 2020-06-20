@@ -1,15 +1,17 @@
 .todoItem {
   display: flex;
-  padding: 0.5rem;
+  padding: 0.7rem;
+  align-items: center;
 
   &:hover {
     background-color: #f3f2f2;
   }
 
-  & button {
-    border-radius: 100%;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.3rem;
+  & label:before,
+  & label:after {
+    margin-top: -0.45rem;
+    width: 1.9rem;
+    height: 1.9rem;
   }
 }
 
@@ -20,6 +22,9 @@
 
   & span {
     color: #cecece;
+  }
+
+  & span.todoText {
     text-decoration: line-through;
   }
 
@@ -40,12 +45,24 @@
   align-items: center;
   width: 100%;
 
-  & button {
-    padding-top: 0;
-    padding-bottom: 0;
+  & button.edit {
+    margin-left: 0.5rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
   }
 
-  & span {
+  & button {
+    border-radius: 100%;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+
+    & span {
+      content: '\270F';
+    }
+  }
+
+  & span.todoText {
+    margin-left: 0.8rem;
     word-break: break-all;
   }
 }

@@ -33,7 +33,7 @@ interface AppResolvers extends Resolvers {
 
 export const resolvers: AppResolvers = {
   Mutation: {
-    createTodo: (_, { text }: { text: string }, { cache }): Todo => {
+    createTodo: (_, { text }: { text: string }, { cache }) => {
       const data = cache.readQuery<Todos>({ query: GET_TODOS });
 
       const newTodo: Todo = {
@@ -49,14 +49,27 @@ export const resolvers: AppResolvers = {
         data: { todos: [newTodo, ...(data?.todos ?? [])] },
       });
 
-      return newTodo;
+      return null;
     },
     updateTodo: (
       _,
       { id, text }: { id: string; text: string },
-      { cache }
-    ): Todo[] => {
-      return [];
+      { cache, getCacheKey }
+    ) => {
+      const todo = cache.readFragment<Todo>({
+        id: getCacheKey({ id, __typename: 'Todo' }),
+        fragment: TODO_FRAGMENT,
+      });
+
+      const updatedTodo = { ...todo, text };
+
+      cache.writeFragment({
+        id: getCacheKey({ id, __typename: 'Todo' }),
+        fragment: TODO_FRAGMENT,
+        data: updatedTodo,
+      });
+
+      return null;
     },
     removeTodo: (_, { id }: { id: string }, { cache }) => {
       const data = cache.readQuery<Todos>({ query: GET_TODOS });
