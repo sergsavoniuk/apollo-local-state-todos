@@ -7,12 +7,7 @@ import classes from './add-todo.module.scss';
 
 export const CREATE_TODO = gql`
   mutation CreateTodo($text: String!) {
-    createTodo(text: $text) @client {
-      id
-      text
-      completed
-      createdAt
-    }
+    createTodo(text: $text) @client
   }
 `;
 

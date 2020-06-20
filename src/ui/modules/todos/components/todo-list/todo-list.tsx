@@ -1,19 +1,27 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { Todo } from 'ui/modules/todos/types';
+import { TodoItem } from 'ui/modules/todos/components/todo-item';
+
+export const TODO_FRAGMENT = gql`
+  fragment TodoItem on Todo {
+    id
+    text
+    completed
+    createdAt
+  }
+`;
 
 export const GET_TODOS = gql`
   query GetTodos {
     todos @client {
-      id
-      text
-      completed
-      createdAt
+      ...TodoItem
     }
   }
+  ${TODO_FRAGMENT}
 `;
 
 export const TodoList: React.FC = () => {
@@ -24,9 +32,9 @@ export const TodoList: React.FC = () => {
   }
 
   return (
-    <ListGroup>
+    <ListGroup flush>
       {data?.todos?.map((todo) => (
-        <ListGroupItem key={todo.id}>{JSON.stringify(todo)}</ListGroupItem>
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </ListGroup>
   );

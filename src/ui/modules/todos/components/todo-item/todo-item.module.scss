@@ -1,0 +1,51 @@
+.todoItem {
+  display: flex;
+  padding: 0.5rem;
+
+  &:hover {
+    background-color: #f3f2f2;
+  }
+
+  & button {
+    border-radius: 100%;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+.todoItemCompleted {
+  &:hover {
+    background-color: #fff;
+  }
+
+  & span {
+    color: #cecece;
+    text-decoration: line-through;
+  }
+
+  & button {
+    border-color: #cecece;
+    background-color: #cecece;
+  }
+
+  & div > label:before {
+    border-color: #cecece !important;
+    background-color: #cecece !important;
+  }
+}
+
+.todoItemSecondColumn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  & button {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  & span {
+    word-break: break-all;
+  }
+}

@@ -41,8 +41,6 @@ export const App: React.FC = () => {
         resolvers,
       });
 
-      // cache.writeData(initialData);
-
       await persistCache({
         cache,
         storage: window.localStorage as PersistentStorage<
