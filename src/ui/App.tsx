@@ -5,8 +5,17 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
-import gql from 'graphql-tag';
 import { Spinner } from 'reactstrap';
+
+import { resolvers } from 'ui/graphql/resolvers';
+import { typeDefs } from 'ui/graphql/typeDefs';
+
+const initialData = {
+  data: {
+    todos: [],
+    visibilityFilter: 'ALL',
+  },
+};
 
 export const App: React.FC = () => {
   const [client, setClient] = useState<ApolloClient<
@@ -22,33 +31,11 @@ export const App: React.FC = () => {
           uri: '/graphql',
         }),
         cache,
-        typeDefs: `
-          type User {
-            name: String!
-          }
-
-          type Query {
-            user: User
-          }
-        `,
-        resolvers: {},
+        typeDefs,
+        resolvers,
       });
 
-      client.writeData({
-        data: { user: { name: 'Test', __typename: 'User' } },
-      });
-
-      client
-        .query({
-          query: gql`
-            {
-              user {
-                name
-              }
-            }
-          `,
-        })
-        .then((result) => console.log(result));
+      client.writeData(initialData);
 
       await persistCache({
         cache,
