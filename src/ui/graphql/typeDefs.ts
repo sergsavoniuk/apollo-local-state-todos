@@ -10,6 +10,7 @@ export const typeDefs = `
     text: String!
     completed: Boolean!
     createdAt: String!
+    __typename: String!
   }
 
   type VisibilityFilter {
@@ -24,7 +25,7 @@ export const typeDefs = `
     createTodo(text: String!): Todo!
     updateTodo(id: String!, text: String!): Todo!
     removeTodo(id: String!): Todo!
-    completeTodo(id: String!): Todo!
+    toggleTodo(id: String!): Todo!
     setVisibilityFilter(visibilityFilter: Filter!): Filter!
   }
 `;

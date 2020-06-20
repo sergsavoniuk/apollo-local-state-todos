@@ -7,8 +7,14 @@ import { persistCache } from 'apollo-cache-persist';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
 import { Spinner } from 'reactstrap';
 
+import { GET_TODOS } from './modules/todos/components/todo-list';
+
 import { resolvers } from 'ui/graphql/resolvers';
 import { typeDefs } from 'ui/graphql/typeDefs';
+
+import { TodosPage } from 'ui/pages/todos';
+
+import classes from './App.module.scss';
 
 const initialData = {
   data: {
@@ -35,7 +41,7 @@ export const App: React.FC = () => {
         resolvers,
       });
 
-      client.writeData(initialData);
+      // cache.writeData(initialData);
 
       await persistCache({
         cache,
@@ -44,17 +50,25 @@ export const App: React.FC = () => {
         >,
       });
 
+      try {
+        cache.readQuery({ query: GET_TODOS });
+      } catch {
+        cache.writeData(initialData);
+      }
+
       setClient(client);
     })();
   }, []);
 
   if (!client) {
-    return <Spinner type='grow' color='light' />;
+    return <Spinner type='grow' color='secondary' />;
   }
 
   return (
     <ApolloProvider client={client}>
-      <h1>Apollo Client Local State</h1>
+      <div className={classes.main}>
+        <TodosPage />
+      </div>
     </ApolloProvider>
   );
 };
