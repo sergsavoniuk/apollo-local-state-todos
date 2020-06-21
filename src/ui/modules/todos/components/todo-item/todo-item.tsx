@@ -66,7 +66,7 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
         )}
         <div className='d-flex'>
           <Button
-            aria-label='edit todo'
+            aria-label={editMode ? 'save todo' : 'edit todo'}
             color='success'
             className={cn(classes.edit, 'mr-1')}
             onClick={() => {

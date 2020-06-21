@@ -8,6 +8,7 @@ import {
   GET_TODOS,
   TODO_FRAGMENT,
 } from 'ui/modules/todos/components/todo-list';
+import { GET_VISIBILITY_FILTER } from 'ui/modules/todos/components/visibility-filter';
 
 import { formatDate } from 'ui/utils/formatDate';
 
@@ -97,12 +98,17 @@ export const resolvers: AppResolvers = {
 
       return null;
     },
-    serVisibilityFilter: (
+    setVisibilityFilter: (
       _,
-      { filter }: { filter: Filter },
+      { visibilityFilter }: { visibilityFilter: Filter },
       { cache }
-    ): Filter => {
-      return filter;
+    ) => {
+      cache.writeQuery({
+        query: GET_VISIBILITY_FILTER,
+        data: { visibilityFilter },
+      });
+
+      return visibilityFilter;
     },
   },
 };

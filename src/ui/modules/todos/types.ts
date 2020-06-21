@@ -17,5 +17,5 @@ export type Todos = {
 };
 
 export type VisibilityFilter = {
-  filter: Filter;
+  visibilityFilter: Filter;
 };

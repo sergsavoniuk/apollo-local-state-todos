@@ -14,11 +14,12 @@ export const typeDefs = `
   }
 
   type VisibilityFilter {
-    filter: Filter!
+    visibilityFilter: Filter!
   }
 
   type Query {
     todos(visibilityFilter: Filter = Filter.ALL): [Todo]!
+    visibilityFilter: Filter!
   }
 
   type Mutation {

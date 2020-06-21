@@ -7,10 +7,11 @@ import { persistCache } from 'apollo-cache-persist';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
 import { Spinner } from 'reactstrap';
 
-import { GET_TODOS } from './modules/todos/components/todo-list';
-
 import { resolvers } from 'ui/graphql/resolvers';
 import { typeDefs } from 'ui/graphql/typeDefs';
+
+import { GET_TODOS } from 'ui/modules/todos/components/todo-list';
+import { Filter } from 'ui/modules/todos/types';
 
 import { TodosPage } from 'ui/pages/todos';
 
@@ -19,7 +20,7 @@ import classes from './App.module.scss';
 const initialData = {
   data: {
     todos: [],
-    visibilityFilter: 'ALL',
+    visibilityFilter: Filter.ALL,
   },
 };
 

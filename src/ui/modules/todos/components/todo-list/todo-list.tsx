@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 
 import { Todo } from 'ui/modules/todos/types';
 import { TodoItem } from 'ui/modules/todos/components/todo-item';
+import { VisibilityFilterView as VisibilityFilter } from 'ui/modules/todos/components/visibility-filter';
 
 export const TODO_FRAGMENT = gql`
   fragment TodoItem on Todo {
@@ -33,6 +34,7 @@ export const TodoList: React.FC = () => {
 
   return (
     <ListGroup flush>
+      <VisibilityFilter />
       {data?.todos?.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
