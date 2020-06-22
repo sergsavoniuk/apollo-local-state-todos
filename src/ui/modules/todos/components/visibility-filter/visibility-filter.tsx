@@ -1,55 +1,46 @@
-import React from 'react';
-import { CustomInput } from 'reactstrap';
-import gql from 'graphql-tag';
+import React from "react";
+import { CustomInput } from "reactstrap";
+import { Filter, VisibilityFilter } from "ui/modules/todos/types";
 
-import { Filter, VisibilityFilter } from 'ui/modules/todos/types';
-
-import classes from './visibility-filter.module.scss';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import classes from "./visibility-filter.module.scss";
 
 const Filters = [
   {
-    label: 'All',
+    label: "All",
     value: Filter.ALL,
   },
   {
-    label: 'Completed',
-    value: Filter.COMPLETED,
+    label: "Active",
+    value: Filter.ACTIVE,
   },
   {
-    label: 'Uncompleted',
-    value: Filter.UNCOMPLETED,
+    label: "Completed",
+    value: Filter.COMPLETED,
   },
 ];
 
-export const GET_VISIBILITY_FILTER = gql`
-  query GetVisibilityFilter {
-    visibilityFilter @client
-  }
-`;
+type Props = {
+  filter?: VisibilityFilter;
+  setVisibilityFilter: Function;
+};
 
-export const SET_VISIBILITY_FILTER = gql`
-  mutation SetVisibilityFilter($visibilityFilter: Filter) {
-    setVisibilityFilter(visibilityFilter: $visibilityFilter) @client
-  }
-`;
-
-export const VisibilityFilterView = () => {
-  const { data } = useQuery<VisibilityFilter>(GET_VISIBILITY_FILTER);
-  const [setVisibilityFilter] = useMutation(SET_VISIBILITY_FILTER);
-
+export const VisibilityFilterView: React.FC<Props> = ({
+  filter,
+  setVisibilityFilter,
+}) => {
   return (
     <div className={classes.visibilityFilter}>
       {Filters.map(({ label, value }) => (
         <CustomInput
           key={value}
           id={value}
-          type='radio'
-          className='mr-4'
-          checked={data?.visibilityFilter === value}
+          type="radio"
+          className="mr-4"
+          checked={filter?.visibilityFilter === value}
           onChange={() => {
             setVisibilityFilter({ variables: { visibilityFilter: value } });
-          }}>
+          }}
+        >
           {label}
         </CustomInput>
       ))}

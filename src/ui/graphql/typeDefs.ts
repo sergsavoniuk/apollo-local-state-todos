@@ -1,8 +1,8 @@
 export const typeDefs = `
   enum Filter {
     ALL
+    ACTIVE
     COMPLETED
-    UNCOMPLETED
   }
 
   type Todo {

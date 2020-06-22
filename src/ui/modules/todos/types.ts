@@ -1,7 +1,7 @@
 export enum Filter {
-  ALL = 'ALL',
-  COMPLETED = 'COMPLETED',
-  UNCOMPLETED = 'UNCOMPLETED',
+  ALL = "ALL",
+  ACTIVE = "ACTIVE",
+  COMPLETED = "COMPLETED",
 }
 
 export type Todo = {

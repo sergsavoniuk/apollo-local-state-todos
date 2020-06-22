@@ -1,16 +1,16 @@
-import { ApolloCache } from 'apollo-cache';
-import { StoreObject } from 'apollo-cache-inmemory';
-import { Resolvers } from 'apollo-client';
-import { v4 as uuidv4 } from 'uuid';
+import { ApolloCache } from "apollo-cache";
+import { StoreObject } from "apollo-cache-inmemory";
+import { Resolvers } from "apollo-client";
+import { v4 as uuidv4 } from "uuid";
 
-import { Todo, Todos, Filter } from 'ui/modules/todos/types';
+import { Todo, Todos, Filter } from "ui/modules/todos/types";
 import {
   GET_TODOS,
   TODO_FRAGMENT,
-} from 'ui/modules/todos/components/todo-list';
-import { GET_VISIBILITY_FILTER } from 'ui/modules/todos/components/visibility-filter';
+  GET_VISIBILITY_FILTER,
+} from "ui/modules/todos/components/todo-list";
 
-import { formatDate } from 'ui/utils/formatDate';
+import { formatDate } from "ui/utils/formatDate";
 
 type ResolverFn = (
   parent: any,
@@ -42,7 +42,7 @@ export const resolvers: AppResolvers = {
         text,
         completed: false,
         createdAt: formatDate(new Date()),
-        __typename: 'Todo',
+        __typename: "Todo",
       };
 
       cache.writeQuery({
@@ -58,14 +58,14 @@ export const resolvers: AppResolvers = {
       { cache, getCacheKey }
     ) => {
       const todo = cache.readFragment<Todo>({
-        id: getCacheKey({ id, __typename: 'Todo' }),
+        id: getCacheKey({ id, __typename: "Todo" }),
         fragment: TODO_FRAGMENT,
       });
 
       const updatedTodo = { ...todo, text };
 
       cache.writeFragment({
-        id: getCacheKey({ id, __typename: 'Todo' }),
+        id: getCacheKey({ id, __typename: "Todo" }),
         fragment: TODO_FRAGMENT,
         data: updatedTodo,
       });
@@ -86,12 +86,12 @@ export const resolvers: AppResolvers = {
     },
     toggleTodo: (_, { id }: { id: string }, { cache, getCacheKey }) => {
       const todo = cache.readFragment<Todo>({
-        id: getCacheKey({ id, __typename: 'Todo' }),
+        id: getCacheKey({ id, __typename: "Todo" }),
         fragment: TODO_FRAGMENT,
       });
 
       cache.writeFragment({
-        id: getCacheKey({ id, __typename: 'Todo' }),
+        id: getCacheKey({ id, __typename: "Todo" }),
         fragment: TODO_FRAGMENT,
         data: { ...todo, completed: !todo?.completed },
       });

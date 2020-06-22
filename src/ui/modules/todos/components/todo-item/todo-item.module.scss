@@ -1,6 +1,6 @@
 .todoItem {
   display: flex;
-  padding: 0.7rem;
+  padding: 0.3rem 0;
   align-items: center;
 
   &:hover {
@@ -57,7 +57,7 @@
     padding: 0.3rem 0.6rem;
 
     & span {
-      content: '\270F';
+      content: "\270F";
     }
   }
 
