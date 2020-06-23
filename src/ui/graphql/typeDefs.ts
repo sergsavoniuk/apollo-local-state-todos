@@ -23,10 +23,11 @@ export const typeDefs = `
   }
 
   type Mutation {
-    createTodo(text: String!): Todo!
-    updateTodo(id: String!, text: String!): Todo!
-    removeTodo(id: String!): Todo!
-    toggleTodo(id: String!): Todo!
+    createTodo(text: String!): Todo
+    updateTodo(id: String!, text: String!): Todo
+    removeTodo(id: String!): Todo
+    toggleTodo(id: String!): Todo
+    clearCompletedTodos(): [Todo]
     setVisibilityFilter(visibilityFilter: Filter!): Filter!
   }
 `;

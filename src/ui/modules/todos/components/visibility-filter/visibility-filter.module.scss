@@ -1,13 +1,22 @@
+@import 'ui/styles/mixins.scss';
+
 .visibilityFilter {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 0.3rem 0.7rem;
   margin-left: 4rem;
-  border: 1px solid #e4e4e4;
-  border-radius: 5px;
 
   @media screen and (max-width: 550px) {
     margin-left: 0;
   }
+}
+
+.filterButton {
+  @include button();
+  margin-right: 0.5rem;
+}
+
+.activeButton {
+  border: 1px solid rgba(175, 47, 47, 0.2);
 }

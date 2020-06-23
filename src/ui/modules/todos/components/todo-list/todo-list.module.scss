@@ -1,6 +1,9 @@
+@import 'ui/styles/mixins.scss';
+
 .todoListFooter {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 0.5rem;
 
   @media screen and (max-width: 550px) {
@@ -11,4 +14,16 @@
 
 .todoListItemsLeft {
   margin-bottom: 0;
+}
+
+.clearCompleted {
+  @include button();
+  padding: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: 1px solid #fff !important;
+    border-bottom: 1px solid rgba(175, 47, 47, 0.1) !important;
+  }
 }

@@ -1,0 +1,27 @@
+@mixin button {
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #000;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid rgba(175, 47, 47, 0.1);
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus,
+  &:active {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid rgba(175, 47, 47, 0.1) !important;
+  }
+}

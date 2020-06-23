@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { ListGroupItem, Button, CustomInput, Input } from 'reactstrap';
+import {
+  ListGroupItem,
+  Button,
+  CustomInput,
+  Input,
+  InputGroup,
+} from 'reactstrap';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import cn from 'classnames';
@@ -53,14 +59,16 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
       />
       <div className={classes.todoItemSecondColumn}>
         {editMode ? (
-          <Input
-            autoFocus
-            className='ml-3'
-            value={input}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setInput(event.target.value)
-            }
-          />
+          <InputGroup size='sm'>
+            <Input
+              autoFocus
+              className='ml-3'
+              value={input}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setInput(event.target.value)
+              }
+            />
+          </InputGroup>
         ) : (
           <span className={classes.todoText}>{text}</span>
         )}

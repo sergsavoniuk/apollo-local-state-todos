@@ -1,20 +1,21 @@
-import React from "react";
-import { CustomInput } from "reactstrap";
-import { Filter, VisibilityFilter } from "ui/modules/todos/types";
+import React from 'react';
+import { Button } from 'reactstrap';
+import { Filter, VisibilityFilter } from 'ui/modules/todos/types';
+import cn from 'classnames';
 
-import classes from "./visibility-filter.module.scss";
+import classes from './visibility-filter.module.scss';
 
 const Filters = [
   {
-    label: "All",
+    label: 'All',
     value: Filter.ALL,
   },
   {
-    label: "Active",
+    label: 'Active',
     value: Filter.ACTIVE,
   },
   {
-    label: "Completed",
+    label: 'Completed',
     value: Filter.COMPLETED,
   },
 ];
@@ -31,18 +32,17 @@ export const VisibilityFilterView: React.FC<Props> = ({
   return (
     <div className={classes.visibilityFilter}>
       {Filters.map(({ label, value }) => (
-        <CustomInput
+        <Button
           key={value}
-          id={value}
-          type="radio"
-          className="mr-4"
-          checked={filter?.visibilityFilter === value}
-          onChange={() => {
+          className={cn(
+            classes.filterButton,
+            filter?.visibilityFilter === value && classes.activeButton
+          )}
+          onClick={() => {
             setVisibilityFilter({ variables: { visibilityFilter: value } });
-          }}
-        >
+          }}>
           {label}
-        </CustomInput>
+        </Button>
       ))}
     </div>
   );
