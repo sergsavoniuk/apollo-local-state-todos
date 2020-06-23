@@ -57,41 +57,43 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
         checked={todo.completed ?? false}
         onChange={() => toggleTodo()}
       />
-      <div className={classes.todoItemSecondColumn}>
-        {editMode ? (
-          <InputGroup size='sm'>
-            <Input
-              autoFocus
-              className='ml-3'
-              value={input}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                setInput(event.target.value)
-              }
-            />
-          </InputGroup>
-        ) : (
-          <span className={classes.todoText}>{text}</span>
-        )}
-        <div className='d-flex'>
-          <Button
-            aria-label={editMode ? 'save todo' : 'edit todo'}
-            color='success'
-            className={cn(classes.edit, 'mr-1')}
-            onClick={() => {
-              if (editMode) {
-                updateTodo();
-              }
-              setEditMode((editMode) => !editMode);
-            }}>
-            {editMode ? <span>&#128190;</span> : <span>&#9999;</span>}
-          </Button>
-          <Button
-            aria-label='remove todo'
-            color='danger'
-            onClick={() => removeTodo()}>
-            X
-          </Button>
-        </div>
+      {editMode ? (
+        <InputGroup size='sm'>
+          <Input
+            autoFocus
+            className='ml-3'
+            value={input}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setInput(event.target.value)
+            }
+          />
+        </InputGroup>
+      ) : (
+        <span className={classes.todoText}>{text}</span>
+      )}
+      <div className='d-flex mr-2'>
+        <Button
+          aria-label={editMode ? 'save todo' : 'edit todo'}
+          color='success'
+          className={cn(classes.edit, 'mr-1')}
+          onClick={() => {
+            if (editMode) {
+              updateTodo();
+            }
+            setEditMode((editMode) => !editMode);
+          }}>
+          {editMode ? (
+            <span>&#128190;</span>
+          ) : (
+            <span className={classes.editIcon}>&#9999;</span>
+          )}
+        </Button>
+        <Button
+          aria-label='remove todo'
+          color='danger'
+          onClick={() => removeTodo()}>
+          <span>&#10006;</span>
+        </Button>
       </div>
     </ListGroupItem>
   );

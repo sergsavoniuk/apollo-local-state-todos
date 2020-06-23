@@ -1,7 +1,7 @@
 .todoItem {
   display: flex;
-  padding: 0.3rem 0;
   align-items: center;
+  padding: 0.3rem 0;
 
   &:hover {
     background-color: #f3f2f2;
@@ -9,9 +9,41 @@
 
   & label:before,
   & label:after {
-    margin-top: -0.45rem;
-    width: 1.9rem;
-    height: 1.9rem;
+    margin-top: -0.15rem;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  & button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+
+    & span {
+      font-size: 0.7rem;
+      content: '\270F';
+    }
+  }
+
+  & button.edit {
+    margin-left: 0.5rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  & span.editIcon {
+    transform: rotate(90deg);
+  }
+
+  & span.todoText {
+    width: calc(100% - 40px);
+    margin-left: 0.3rem;
+    word-break: break-all;
   }
 }
 
@@ -36,33 +68,5 @@
   & div > label:before {
     border-color: #cecece !important;
     background-color: #cecece !important;
-  }
-}
-
-.todoItemSecondColumn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
-  & button.edit {
-    margin-left: 0.5rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
-  }
-
-  & button {
-    border-radius: 100%;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.6rem;
-
-    & span {
-      content: "\270F";
-    }
-  }
-
-  & span.todoText {
-    margin-left: 0.8rem;
-    word-break: break-all;
   }
 }

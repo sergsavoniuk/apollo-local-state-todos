@@ -73,7 +73,7 @@ export const TodoList: React.FC = () => {
 
   return (
     <>
-      <ListGroup flush>
+      <ListGroup flush className={classes.todoList}>
         {todos?.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
