@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types';
@@ -34,9 +33,6 @@ export const App: React.FC = () => {
       const cache = new InMemoryCache();
 
       const client = new ApolloClient({
-        link: new HttpLink({
-          uri: '/graphql',
-        }),
         cache,
         typeDefs,
         resolvers,
@@ -60,7 +56,11 @@ export const App: React.FC = () => {
   }, []);
 
   if (!client) {
-    return <Spinner type='grow' color='secondary' />;
+    return (
+      <div className={classes.main}>
+        <Spinner type='grow' color='secondary' />
+      </div>
+    );
   }
 
   return (
