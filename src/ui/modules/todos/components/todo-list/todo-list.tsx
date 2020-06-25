@@ -8,7 +8,6 @@ import {
   VisibilityFilter as VisibilityFilterType,
   Filter,
 } from 'ui/modules/todos/types';
-import {} from 'ui/modules/todos/types';
 import { TodoItem } from 'ui/modules/todos/components/todo-item';
 import { VisibilityFilterView as VisibilityFilter } from 'ui/modules/todos/components/visibility-filter';
 
@@ -55,7 +54,9 @@ export const TodoList: React.FC = () => {
   const { data: filter } = useQuery<VisibilityFilterType>(
     GET_VISIBILITY_FILTER
   );
-  const [setVisibilityFilter] = useMutation(SET_VISIBILITY_FILTER);
+  const [setVisibilityFilter] = useMutation<{}, { visibilityFilter: Filter }>(
+    SET_VISIBILITY_FILTER
+  );
   const [clearCompletedTodos] = useMutation(CLEAR_COMPLETED_TODOS);
 
   const todosLeft = useMemo(() => {

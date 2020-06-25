@@ -6,15 +6,13 @@ import { AddTodo } from 'ui/modules/todos/components/add-todo';
 
 import classes from './todos.module.scss';
 
-export const TodosPage = () => {
-  return (
-    <Container fluid className={classes.todosContainer}>
-      <Row noGutters className='d-flex flex-column align-items-center'>
-        <div className={classes.todos}>
-          <AddTodo />
-          <TodoList />
-        </div>
-      </Row>
-    </Container>
-  );
-};
+export const TodosPage = () => (
+  <Container fluid className={classes.todosContainer}>
+    <Row noGutters className='d-flex flex-column align-items-center'>
+      <div className={classes.todos}>
+        <AddTodo />
+        <TodoList />
+      </div>
+    </Row>
+  </Container>
+);

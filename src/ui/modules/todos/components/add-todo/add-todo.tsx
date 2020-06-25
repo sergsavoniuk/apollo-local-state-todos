@@ -13,7 +13,7 @@ export const CREATE_TODO = gql`
 
 export const AddTodo: React.FC = () => {
   const [todo, setTodo] = useState('');
-  const [createTodo] = useMutation(CREATE_TODO);
+  const [createTodo] = useMutation<{}, { text: string }>(CREATE_TODO);
 
   return (
     <form

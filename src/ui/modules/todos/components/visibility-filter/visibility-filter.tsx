@@ -28,22 +28,20 @@ type Props = {
 export const VisibilityFilterView: React.FC<Props> = ({
   filter,
   setVisibilityFilter,
-}) => {
-  return (
-    <div className={classes.visibilityFilter}>
-      {Filters.map(({ label, value }) => (
-        <Button
-          key={value}
-          className={cn(
-            classes.filterButton,
-            filter?.visibilityFilter === value && classes.activeButton
-          )}
-          onClick={() => {
-            setVisibilityFilter({ variables: { visibilityFilter: value } });
-          }}>
-          {label}
-        </Button>
-      ))}
-    </div>
-  );
-};
+}) => (
+  <div className={classes.visibilityFilter}>
+    {Filters.map(({ label, value }) => (
+      <Button
+        key={value}
+        className={cn(
+          classes.filterButton,
+          filter?.visibilityFilter === value && classes.activeButton
+        )}
+        onClick={() => {
+          setVisibilityFilter({ variables: { visibilityFilter: value } });
+        }}>
+        {label}
+      </Button>
+    ))}
+  </div>
+);

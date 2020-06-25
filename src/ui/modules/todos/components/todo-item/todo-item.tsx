@@ -42,11 +42,11 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
   const [input, setInput] = useState(text);
   const [editMode, setEditMode] = useState(false);
 
-  const [removeTodo] = useMutation(REMOVE_TODO, { variables: { id } });
-  const [toggleTodo] = useMutation(TOGGLE_TODO, { variables: { id } });
-  const [updateTodo] = useMutation(UPDATE_TODO, {
-    variables: { id, text: input },
-  });
+  const [removeTodo] = useMutation<{}, { id: string }>(REMOVE_TODO);
+  const [toggleTodo] = useMutation<{}, { id: string }>(TOGGLE_TODO);
+  const [updateTodo] = useMutation<{}, { id: string; text: string }>(
+    UPDATE_TODO
+  );
 
   return (
     <ListGroupItem
@@ -55,7 +55,7 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
         id={id!}
         type='checkbox'
         checked={todo.completed ?? false}
-        onChange={() => toggleTodo()}
+        onChange={() => toggleTodo({ variables: { id } })}
       />
       {editMode ? (
         <InputGroup size='sm'>
@@ -78,7 +78,7 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
           className={cn(classes.edit, 'mr-1')}
           onClick={() => {
             if (editMode) {
-              updateTodo();
+              updateTodo({ variables: { id, text: input } });
             }
             setEditMode((editMode) => !editMode);
           }}>
@@ -91,7 +91,7 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
         <Button
           aria-label='remove todo'
           color='danger'
-          onClick={() => removeTodo()}>
+          onClick={() => removeTodo({ variables: { id } })}>
           <span>&#10006;</span>
         </Button>
       </div>
