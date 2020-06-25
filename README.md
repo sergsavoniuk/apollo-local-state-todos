@@ -1,3 +1,22 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/189c0e09-d50a-45aa-bdd7-aec753bcbd15/deploy-status)](https://app.netlify.com/sites/gallant-kirch-22f61c/deploys)
+
+### [🔥 Live Demo](https://gallant-kirch-22f61c.netlify.app/)
+
+![Screenshot_20200625_232008](https://user-images.githubusercontent.com/21188996/85791967-5e397a00-b73b-11ea-8bd6-387dc6e7ab40.png)
+![Screenshot_20200625_232104](https://user-images.githubusercontent.com/21188996/85791989-672a4b80-b73b-11ea-8b3f-8f66ca6cb6f1.png)
+
+## Introduction
+
+The simple application that utilizes Apollo Client and Apollo Cache Persist for local state management of the application.
+
+## Stack
+
+- **React**
+- **Apollo Client**
+- **Apollo Cache Persist**
+- **TypeScript**
+- **Reactstrap**
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
